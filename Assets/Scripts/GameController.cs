@@ -9,7 +9,8 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private GameObject battleMenu;
 
-    public Text battleText;
+    public Text heroMessage;
+    public Text enemyMessage;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,9 @@ public class GameController : MonoBehaviour
 
     public void NextTurn()
     {
-        battleText.gameObject.SetActive(false);
+        heroMessage.gameObject.SetActive(false);
+        enemyMessage.gameObject.SetActive(false);
+
         FighterStats currentFighterStats = fighterStats[0];
         fighterStats.Remove(currentFighterStats);
 

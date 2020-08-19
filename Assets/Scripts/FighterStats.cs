@@ -78,10 +78,15 @@ public class FighterStats : MonoBehaviour, IComparable
             healthFill.transform.localScale = new Vector2(xNewHealthScale, healthScale.y);
         }
 
-        if (damage > 0)
+        if (gameObject.tag == "Hero")
         {
-            gameControllerObject.GetComponent<GameController>().battleText.gameObject.SetActive(true);
-            gameControllerObject.GetComponent<GameController>().battleText.text = damage.ToString();
+            gameControllerObject.GetComponent<GameController>().heroMessage.gameObject.SetActive(true);
+            gameControllerObject.GetComponent<GameController>().heroMessage.text = damage.ToString();
+        }
+        else if (gameObject.tag == "Enemy")
+        {
+            gameControllerObject.GetComponent<GameController>().enemyMessage.gameObject.SetActive(true);
+            gameControllerObject.GetComponent<GameController>().enemyMessage.text = damage.ToString();
         }
         Invoke("ContinueGame", 2);
     }
