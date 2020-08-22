@@ -38,7 +38,7 @@ public class AttackAction : MonoBehaviour
 
         if (magicAttack && attackerStats.magic < magicCost)
         {
-            Invoke("SkipTurnContinueGame", 2);
+            SkipTurnContinueGame();
         }
         else
         {

@@ -15,6 +15,12 @@ public class FighterStats : MonoBehaviour, IComparable
     [SerializeField]
     private GameObject magicFill;
 
+    [SerializeField]
+    private Text healthText;
+
+    [SerializeField]
+    private Text magicText;
+
     [Header("Stats")]
     public float health;
     public float magic;
@@ -32,10 +38,6 @@ public class FighterStats : MonoBehaviour, IComparable
 
     private bool dead = false;
 
-    //Resize health and magic bar
-    private Transform healthTransform;
-    private Transform magicTransform;
-
     private Vector2 healthScale;
     private Vector2 magicScale;
 
@@ -46,14 +48,22 @@ public class FighterStats : MonoBehaviour, IComparable
 
     void Awake()
     {
-        healthTransform = healthFill.GetComponent<RectTransform>();
         healthScale = healthFill.transform.localScale;
 
-        magicTransform = magicFill.GetComponent<RectTransform>();
         magicScale = magicFill.transform.localScale;
 
         startHealth = health;
         startMagic = magic;
+
+        if (healthText != null)
+        {
+            healthText.text = health + " / " + startHealth + " HP";
+        }
+
+        if (magicText != null)
+        {
+            magicText.text = magic + " / " + startMagic + " MP";
+        }
 
         gameControllerObject = GameObject.Find("GameControllerObject");
     }
@@ -72,28 +82,34 @@ public class FighterStats : MonoBehaviour, IComparable
 
         if (health <= 0)
         {
+            GameObject.Find("GameControllerObject").GetComponent<GameController>().EndGame(gameObject.tag);
+
             dead = true;
             gameObject.tag = "Dead";
             Destroy(healthFill);
             Destroy(gameObject);
         }
-        else if (damage > 0)
+        else
         {
             xNewHealthScale = healthScale.x * (health / startHealth);
             healthFill.transform.localScale = new Vector2(xNewHealthScale, healthScale.y);
-        }
+            if (healthText != null)
+            {
+                healthText.text = health + " / " + startHealth + " HP";
+            }
 
-        if (gameObject.tag == "Hero")
-        {
-            gameControllerObject.GetComponent<GameController>().heroMessage.gameObject.SetActive(true);
-            gameControllerObject.GetComponent<GameController>().heroMessage.text = damage.ToString();
+            if (gameObject.tag == "Hero")
+            {
+                gameControllerObject.GetComponent<GameController>().heroMessage.gameObject.SetActive(true);
+                gameControllerObject.GetComponent<GameController>().heroMessage.text = damage.ToString();
+            }
+            else if (gameObject.tag == "Enemy")
+            {
+                gameControllerObject.GetComponent<GameController>().enemyMessage.gameObject.SetActive(true);
+                gameControllerObject.GetComponent<GameController>().enemyMessage.text = damage.ToString();
+            }
+            Invoke("ContinueGame", 1);
         }
-        else if (gameObject.tag == "Enemy")
-        {
-            gameControllerObject.GetComponent<GameController>().enemyMessage.gameObject.SetActive(true);
-            gameControllerObject.GetComponent<GameController>().enemyMessage.text = damage.ToString();
-        }
-        Invoke("ContinueGame", 1);
     }
 
     public void updateMagicFill(float cost)
@@ -103,6 +119,11 @@ public class FighterStats : MonoBehaviour, IComparable
             magic -= cost;
             xNewMagicScale = magicScale.x * (magic / startMagic);
             magicFill.transform.localScale = new Vector2(xNewMagicScale, magicScale.y);
+
+            if (magicText != null)
+            {
+                magicText.text = magic + " / " + startMagic + " MP";
+            }
         }
     }
 

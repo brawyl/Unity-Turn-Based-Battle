@@ -17,8 +17,6 @@ public class FighterAction : MonoBehaviour
     [SerializeField]
     private Sprite faceIcon;
 
-    private GameObject currentAttack;
-
     void Awake()
     {
         hero = GameObject.FindGameObjectWithTag("Hero");
@@ -39,7 +37,7 @@ public class FighterAction : MonoBehaviour
         }
         else
         {
-            Debug.Log("run");
+            Debug.Log("defend");
         }
     }
 }
