@@ -60,6 +60,7 @@ public class AttackAction : MonoBehaviour
             float defenseMultiplier = Random.Range(minDefenseMultiplier, maxDefenseMultiplier);
             damage = Mathf.Max(0, damage - (defenseMultiplier * targetStats.defense));
             owner.GetComponent<Animator>().Play(animationName);
+
             targetStats.ReceiveDamage(Mathf.CeilToInt(damage));
         }
     }

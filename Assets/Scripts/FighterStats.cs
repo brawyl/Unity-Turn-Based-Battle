@@ -60,10 +60,15 @@ public class FighterStats : MonoBehaviour, IComparable
 
     public void ReceiveDamage(float damage)
     {
+        StartCoroutine(takeDamage(damage));
+    }
+
+    IEnumerator takeDamage(float damage)
+    {
+        yield return new WaitForSeconds(0.5f);
+
         health -= damage;
         animator.Play("damage");
-
-        //set damage text
 
         if (health <= 0)
         {
@@ -88,7 +93,7 @@ public class FighterStats : MonoBehaviour, IComparable
             gameControllerObject.GetComponent<GameController>().enemyMessage.gameObject.SetActive(true);
             gameControllerObject.GetComponent<GameController>().enemyMessage.text = damage.ToString();
         }
-        Invoke("ContinueGame", 2);
+        Invoke("ContinueGame", 1);
     }
 
     public void updateMagicFill(float cost)
