@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class GameController : MonoBehaviour
 {
     private List<FighterStats> fighterStats;
@@ -21,6 +23,8 @@ public class GameController : MonoBehaviour
     private bool heroTurn;
     private bool enemyTurn;
 
+    private bool gameOver = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +41,7 @@ public class GameController : MonoBehaviour
 
         fighterStats.Sort();
         this.battleMenu.SetActive(false);
+        gameOver = false;
 
         delayCounter = 0.0f;
 
@@ -48,6 +53,13 @@ public class GameController : MonoBehaviour
     void Update()
     {
         UpdateTimerUI();
+        if (gameOver)
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                SceneManager.LoadScene("SampleScene");
+            }
+        }
     }
     //call this on update
     public void UpdateTimerUI()
@@ -106,14 +118,15 @@ public class GameController : MonoBehaviour
     public void EndGame(string tag)
     {
         resultMessage.gameObject.SetActive(true);
+        gameOver = true;
 
         if (tag == "Hero")
         {
-            resultMessage.text = "YOU LOSE\nTry again?";
+            resultMessage.text = "YOU LOSE\nPress space to restart";
         }
         else
         {
-            resultMessage.text = "YOU WIN\nPlay again?";
+            resultMessage.text = "YOU WIN\nPress space to restart";
         }
     }
 }
