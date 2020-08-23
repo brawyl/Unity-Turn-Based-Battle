@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MakeButton : MonoBehaviour
 {
@@ -26,9 +27,13 @@ public class MakeButton : MonoBehaviour
         {
             hero.GetComponent<FighterAction>().SelectAttack("range");
         }
-        else
+        else if (btn.CompareTo("DefendBtn") == 0)
         {
-            hero.GetComponent<FighterAction>().SelectAttack("run");
+            hero.GetComponent<FighterAction>().SelectAttack("defend");
+        }
+        else if (btn.CompareTo("RestartBtn") == 0)
+        {
+            SceneManager.LoadScene("SampleScene");
         }
     }
 }

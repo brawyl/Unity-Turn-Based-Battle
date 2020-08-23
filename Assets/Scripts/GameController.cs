@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -14,10 +13,9 @@ public class GameController : MonoBehaviour
     public Text heroMessage;
     public Text enemyMessage;
     public Text heroDelay;
-    public Text enemyDelay;
 
     public Text resultMessage;
-
+    public Button restartButton;
 
     private float delayCounter;
     private bool heroTurn;
@@ -53,13 +51,6 @@ public class GameController : MonoBehaviour
     void Update()
     {
         UpdateTimerUI();
-        if (gameOver)
-        {
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                SceneManager.LoadScene("SampleScene");
-            }
-        }
     }
     //call this on update
     public void UpdateTimerUI()
@@ -70,10 +61,6 @@ public class GameController : MonoBehaviour
         if (heroTurn)
         {
             heroDelay.text = delayCounter.ToString("0.00");
-        }
-        else if (enemyTurn)
-        {
-            enemyDelay.text = delayCounter.ToString("0.00");
         }
     }
 
@@ -86,6 +73,7 @@ public class GameController : MonoBehaviour
         heroTurn = false;
 
         resultMessage.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(false);
 
         FighterStats currentFighterStats = fighterStats[0];
         fighterStats.Remove(currentFighterStats);
@@ -118,15 +106,16 @@ public class GameController : MonoBehaviour
     public void EndGame(string tag)
     {
         resultMessage.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(true);
         gameOver = true;
 
         if (tag == "Hero")
         {
-            resultMessage.text = "YOU LOSE\nPress space to restart";
+            resultMessage.text = "YOU LOSE";
         }
         else
         {
-            resultMessage.text = "YOU WIN\nPress space to restart";
+            resultMessage.text = "YOU WIN";
         }
     }
 }
