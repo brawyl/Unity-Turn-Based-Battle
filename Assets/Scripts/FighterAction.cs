@@ -35,6 +35,10 @@ public class FighterAction : MonoBehaviour
         {
             rangePrefab.GetComponent<AttackAction>().Attack(victim);
         }
+        else if (btn.CompareTo("defend") == 0)
+        {
+            rangePrefab.GetComponent<AttackAction>().Attack(victim);
+        }
         else
         {
             Debug.Log("defend");

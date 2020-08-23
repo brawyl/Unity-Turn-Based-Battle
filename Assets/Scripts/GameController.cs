@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -14,8 +15,8 @@ public class GameController : MonoBehaviour
     public Text enemyMessage;
     public Text heroDelay;
 
-    public Text resultMessage;
-    public Button restartButton;
+    public GameObject endScreenMenu;
+    public TMP_Text resultMessage;
 
     private float delayCounter;
     private bool heroTurn;
@@ -43,7 +44,7 @@ public class GameController : MonoBehaviour
 
         delayCounter = 0.0f;
 
-        resultMessage.text = "FIGHT!";
+        endScreenMenu.gameObject.SetActive(false);
 
         NextTurn();
     }
@@ -71,9 +72,6 @@ public class GameController : MonoBehaviour
         delayCounter = 0.0f;
         enemyTurn = false;
         heroTurn = false;
-
-        resultMessage.gameObject.SetActive(false);
-        restartButton.gameObject.SetActive(false);
 
         FighterStats currentFighterStats = fighterStats[0];
         fighterStats.Remove(currentFighterStats);
@@ -105,8 +103,7 @@ public class GameController : MonoBehaviour
 
     public void EndGame(string tag)
     {
-        resultMessage.gameObject.SetActive(true);
-        restartButton.gameObject.SetActive(true);
+        endScreenMenu.gameObject.SetActive(true);
         gameOver = true;
 
         if (tag == "Hero")

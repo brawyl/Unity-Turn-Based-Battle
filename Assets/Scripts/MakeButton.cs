@@ -31,9 +31,5 @@ public class MakeButton : MonoBehaviour
         {
             hero.GetComponent<FighterAction>().SelectAttack("defend");
         }
-        else if (btn.CompareTo("RestartBtn") == 0)
-        {
-            SceneManager.LoadScene("SampleScene");
-        }
     }
 }
