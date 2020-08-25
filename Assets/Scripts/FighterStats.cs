@@ -25,10 +25,11 @@ public class FighterStats : MonoBehaviour, IComparable
     public float health;
     public float magic;
     public float melee;
-    public float magicRange;
+    public float range;
     public float defense;
     public float speed;
     public float experience;
+    public string elementType;
 
     private float startHealth;
     private float startMagic;
@@ -73,12 +74,12 @@ public class FighterStats : MonoBehaviour, IComparable
         gameControllerObject.GetComponent<GameController>().heroTurn = false;
     }
 
-    public void ReceiveDamage(float damage, float length)
+    public void ReceiveDamage(float damage, float length, bool selfDamage=false)
     {
-        StartCoroutine(takeDamage(damage, length));
+        StartCoroutine(damageUI(damage, length, selfDamage));
     }
 
-    IEnumerator takeDamage(float damage, float length)
+    IEnumerator damageUI(float damage, float length, bool selfDamage)
     {
         yield return new WaitForSeconds(length);
 
@@ -113,6 +114,9 @@ public class FighterStats : MonoBehaviour, IComparable
                 gameControllerObject.GetComponent<GameController>().enemyMessage.gameObject.SetActive(true);
                 gameControllerObject.GetComponent<GameController>().enemyMessage.text = damage.ToString();
             }
+        }
+        if (!selfDamage)
+        {
             Invoke("ContinueGame", 1);
         }
     }

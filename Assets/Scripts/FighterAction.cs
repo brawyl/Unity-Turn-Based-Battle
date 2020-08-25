@@ -29,11 +29,11 @@ public class FighterAction : MonoBehaviour
 
         if (action.Equals("attack"))
         {
-            meleePrefab.GetComponent<AttackAction>().Attack(victim);
+            meleePrefab.GetComponent<BattleAction>().Attack(victim);
         }
         else if (action.Equals("skill"))
         {
-            rangePrefab.GetComponent<AttackAction>().Attack(victim);
+            rangePrefab.GetComponent<BattleAction>().Attack(victim);
         }
         else
         {

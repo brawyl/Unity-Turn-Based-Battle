@@ -1115,13 +1115,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1870057698}
     m_Modifications:
-    - target: {fileID: 1839126671205151108, guid: dea4204ae4b814fdc9a8e2141bf5f056, type: 3}
-      propertyPath: owner
-      value: 
-      objectReference: {fileID: 1870057696}
     - target: {fileID: 1839126671205151109, guid: dea4204ae4b814fdc9a8e2141bf5f056, type: 3}
       propertyPath: m_Name
-      value: WMeleePrefab
+      value: MeleePrefab
       objectReference: {fileID: 0}
     - target: {fileID: 1839126671205151111, guid: dea4204ae4b814fdc9a8e2141bf5f056, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1167,6 +1163,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6368815233724543032, guid: dea4204ae4b814fdc9a8e2141bf5f056, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 1870057696}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dea4204ae4b814fdc9a8e2141bf5f056, type: 3}
 --- !u!4 &69315807 stripped
@@ -7273,13 +7273,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1588133569}
     m_Modifications:
-    - target: {fileID: 1839126671205151108, guid: dea4204ae4b814fdc9a8e2141bf5f056, type: 3}
-      propertyPath: owner
-      value: 
-      objectReference: {fileID: 1588133567}
     - target: {fileID: 1839126671205151109, guid: dea4204ae4b814fdc9a8e2141bf5f056, type: 3}
       propertyPath: m_Name
-      value: GMeleePrefab
+      value: MeleePrefab
       objectReference: {fileID: 0}
     - target: {fileID: 1839126671205151111, guid: dea4204ae4b814fdc9a8e2141bf5f056, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7325,6 +7321,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6368815233724543032, guid: dea4204ae4b814fdc9a8e2141bf5f056, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 1588133567}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dea4204ae4b814fdc9a8e2141bf5f056, type: 3}
 --- !u!4 &992531096 stripped
@@ -7467,14 +7467,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1631373129301288258, guid: f14a63c4b83fd4053b258aed6795effd, type: 3}
-      propertyPath: owner
-      value: 
-      objectReference: {fileID: 1870057696}
     - target: {fileID: 1631373129301288259, guid: f14a63c4b83fd4053b258aed6795effd, type: 3}
       propertyPath: m_Name
       value: WRangePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 8864841488722176389, guid: f14a63c4b83fd4053b258aed6795effd, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 1870057696}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f14a63c4b83fd4053b258aed6795effd, type: 3}
 --- !u!4 &1014332030 stripped
@@ -10653,6 +10653,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GRangePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 8864841488722176389, guid: f14a63c4b83fd4053b258aed6795effd, type: 3}
+      propertyPath: magicCost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8864841488722176389, guid: f14a63c4b83fd4053b258aed6795effd, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 1588133567}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f14a63c4b83fd4053b258aed6795effd, type: 3}
 --- !u!4 &1482980064 stripped
@@ -11304,12 +11312,13 @@ MonoBehaviour:
   healthText: {fileID: 0}
   magicText: {fileID: 0}
   health: 2000
-  magic: 100
+  magic: 10
   melee: 100
-  magicRange: 200
+  range: 200
   defense: 5
   speed: 10
   experience: 0
+  elementType: 
   nextActTurn: 0
 --- !u!95 &1588133571
 Animator:
@@ -13220,12 +13229,13 @@ MonoBehaviour:
   healthText: {fileID: 1010349185}
   magicText: {fileID: 408148353}
   health: 1000
-  magic: 100
+  magic: 10
   melee: 100
-  magicRange: 350
+  range: 350
   defense: 4
   speed: 10
   experience: 0
+  elementType: 
   nextActTurn: 0
 --- !u!1 &1880626120
 GameObject:

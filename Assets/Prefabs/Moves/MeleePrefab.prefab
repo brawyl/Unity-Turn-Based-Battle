@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1839126671205151111}
-  - component: {fileID: 1839126671205151108}
+  - component: {fileID: 6368815233724543032}
   m_Layer: 0
   m_Name: MeleePrefab
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1839126671205151108
+--- !u!114 &6368815233724543032
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,7 +40,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1839126671205151109}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a10739a346f4548d195b4c5154e7e39b, type: 3}
+  m_Script: {fileID: 11500000, guid: 51a6653f8dbce40b4a488cd615be4d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
@@ -49,5 +49,5 @@ MonoBehaviour:
   magicCost: 0
   minAttackMultiplier: 0.9
   maxAttackMultiplier: 1.1
-  minDefenseMultiplier: 0.5
-  maxDefenseMultiplier: 1
+  minDefenseMultiplier: 0
+  maxDefenseMultiplier: 0
