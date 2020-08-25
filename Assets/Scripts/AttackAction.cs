@@ -36,6 +36,8 @@ public class AttackAction : MonoBehaviour
         attackerStats = owner.GetComponent<FighterStats>();
         targetStats = victim.GetComponent<FighterStats>();
 
+        targetStats.stopDelayCounter();
+
         if (magicAttack && attackerStats.magic < magicCost)
         {
             SkipTurnContinueGame();
@@ -59,9 +61,23 @@ public class AttackAction : MonoBehaviour
 
             float defenseMultiplier = Random.Range(minDefenseMultiplier, maxDefenseMultiplier);
             damage = Mathf.Max(0, damage - (defenseMultiplier * targetStats.defense));
-            owner.GetComponent<Animator>().Play(animationName);
 
-            targetStats.ReceiveDamage(Mathf.CeilToInt(damage));
+            var animator = owner.GetComponent<Animator>();
+
+            AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+            float animationLength = 0;
+            foreach (AnimationClip clip in clips)
+            {
+                if (clip.name == animationName)
+                {
+                    animationLength = clip.length;
+                    break;
+                }
+            }
+
+            animator.Play(animationName);
+
+            targetStats.ReceiveDamage(Mathf.CeilToInt(damage), animationLength);
         }
     }
 

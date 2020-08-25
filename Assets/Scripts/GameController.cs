@@ -19,8 +19,7 @@ public class GameController : MonoBehaviour
     public TMP_Text resultMessage;
 
     private float delayCounter;
-    private bool heroTurn;
-    private bool enemyTurn;
+    public bool heroTurn;
 
     private bool gameOver = false;
 
@@ -70,7 +69,6 @@ public class GameController : MonoBehaviour
         heroMessage.gameObject.SetActive(false);
         enemyMessage.gameObject.SetActive(false);
         delayCounter = 0.0f;
-        enemyTurn = false;
         heroTurn = false;
 
         FighterStats currentFighterStats = fighterStats[0];
@@ -90,7 +88,6 @@ public class GameController : MonoBehaviour
             else
             {
                 this.battleMenu.SetActive(false);
-                enemyTurn = true;
                 string attackType = Random.Range(0, 2) == 1 ? "melee" : "range";
                 currentUnit.GetComponent<FighterAction>().SelectAttack(attackType);
             }

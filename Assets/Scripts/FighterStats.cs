@@ -68,21 +68,26 @@ public class FighterStats : MonoBehaviour, IComparable
         gameControllerObject = GameObject.Find("GameControllerObject");
     }
 
-    public void ReceiveDamage(float damage)
+    public void stopDelayCounter()
     {
-        StartCoroutine(takeDamage(damage));
+        gameControllerObject.GetComponent<GameController>().heroTurn = false;
     }
 
-    IEnumerator takeDamage(float damage)
+    public void ReceiveDamage(float damage, float length)
     {
-        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(takeDamage(damage, length));
+    }
+
+    IEnumerator takeDamage(float damage, float length)
+    {
+        yield return new WaitForSeconds(length);
 
         health -= damage;
         animator.Play("damage");
 
         if (health <= 0)
         {
-            GameObject.Find("GameControllerObject").GetComponent<GameController>().EndGame(gameObject.tag);
+            gameControllerObject.GetComponent<GameController>().EndGame(gameObject.tag);
 
             dead = true;
             gameObject.tag = "Dead";
