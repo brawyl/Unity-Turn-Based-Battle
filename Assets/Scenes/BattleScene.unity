@@ -519,7 +519,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 14636155}
   m_OnClick:
     m_PersistentCalls:
@@ -3203,7 +3203,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Giant
+  m_Text: Enemy
 --- !u!222 &410747208
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4886,7 +4886,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 702811656}
   m_OnClick:
     m_PersistentCalls:
@@ -5644,6 +5644,87 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 786054063}
+  m_CullTransparentMesh: 0
+--- !u!1 &802013276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 802013277}
+  - component: {fileID: 802013279}
+  - component: {fileID: 802013278}
+  m_Layer: 5
+  m_Name: TurnOrderText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &802013277
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802013276}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1857955977}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 333, y: -1315}
+  m_SizeDelta: {x: 600, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &802013278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802013276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: ed663f207e96c984a85db17d33df0240, type: 3}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 80
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Next Turn:
+
+'
+--- !u!222 &802013279
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802013276}
   m_CullTransparentMesh: 0
 --- !u!1 &815465583
 GameObject:
@@ -6694,7 +6775,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 908845186}
   m_OnClick:
     m_PersistentCalls:
@@ -6808,8 +6889,10 @@ MonoBehaviour:
   heroMessage: {fileID: 1971059502}
   enemyMessage: {fileID: 1679396592}
   heroDelay: {fileID: 230902271}
+  turnOrder: {fileID: 802013278}
   endScreenMenu: {fileID: 1712185767}
   resultMessage: {fileID: 1369241140}
+  heroTurn: 0
 --- !u!1 &934156815
 GameObject:
   m_ObjectHideFlags: 0
@@ -7030,7 +7113,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Wizard
+  m_Text: Hero
 --- !u!222 &946864072
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11220,12 +11303,12 @@ MonoBehaviour:
   magicFill: {fileID: 943362027}
   healthText: {fileID: 0}
   magicText: {fileID: 0}
-  health: 100
-  magic: 25
-  melee: 20
-  magicRange: 25
+  health: 2000
+  magic: 100
+  melee: 100
+  magicRange: 200
   defense: 5
-  speed: 5
+  speed: 10
   experience: 0
   nextActTurn: 0
 --- !u!95 &1588133571
@@ -12180,7 +12263,7 @@ RectTransform:
   - {fileID: 848422174}
   - {fileID: 1624634646}
   m_Father: {fileID: 1857955977}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12852,6 +12935,7 @@ RectTransform:
   - {fileID: 74647140}
   - {fileID: 1971059501}
   - {fileID: 1679396591}
+  - {fileID: 802013277}
   - {fileID: 1712185768}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -13135,12 +13219,12 @@ MonoBehaviour:
   magicFill: {fileID: 1433702247}
   healthText: {fileID: 1010349185}
   magicText: {fileID: 408148353}
-  health: 100
-  magic: 50
-  melee: 10
-  magicRange: 20
+  health: 1000
+  magic: 100
+  melee: 100
+  magicRange: 350
   defense: 4
-  speed: 5
+  speed: 10
   experience: 0
   nextActTurn: 0
 --- !u!1 &1880626120

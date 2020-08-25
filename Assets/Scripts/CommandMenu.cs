@@ -14,31 +14,26 @@ public class CommandMenu : MonoBehaviour
 
     public void attack(string elementName)
     {
-        Debug.Log(elementName + " attack");
-        hero.GetComponent<FighterAction>().SelectAttack("melee");
+        hero.GetComponent<FighterAction>().SelectAction("attack");
     }
 
     public void skill(string elementName)
     {
-        Debug.Log(elementName + " skill");
-        hero.GetComponent<FighterAction>().SelectAttack("range");
+        hero.GetComponent<FighterAction>().SelectAction("skill");
     }
 
     public void item(string itemName)
     {
-        Debug.Log(itemName + " item");
-        hero.GetComponent<FighterAction>().SelectAttack("item");
+        hero.GetComponent<FighterAction>().SelectAction("item");
     }
 
     public void defend(string elementName)
     {
-        Debug.Log(elementName + " defend");
-        hero.GetComponent<FighterAction>().SelectAttack("defend");
+        hero.GetComponent<FighterAction>().SelectAction("defend");
     }
 
     public void run()
     {
-        Debug.Log("run away");
-        hero.GetComponent<FighterAction>().SelectAttack("run");
+        hero.GetComponent<FighterAction>().SelectAction("run");
     }
 }

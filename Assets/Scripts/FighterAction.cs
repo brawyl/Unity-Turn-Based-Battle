@@ -23,21 +23,21 @@ public class FighterAction : MonoBehaviour
         enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
 
-    public void SelectAttack(string btn)
+    public void SelectAction(string action)
     {
-        GameObject victim = tag == "Hero" ? enemy : hero;
+        GameObject victim = tag.Equals("Hero") ? enemy : hero;
 
-        if (btn.CompareTo("melee") == 0)
+        if (action.Equals("attack"))
         {
             meleePrefab.GetComponent<AttackAction>().Attack(victim);
         }
-        else if (btn.CompareTo("range") == 0)
+        else if (action.Equals("skill"))
         {
             rangePrefab.GetComponent<AttackAction>().Attack(victim);
         }
         else
         {
-            Debug.Log(btn + " function not available");
+            Debug.Log(action + " function not available");
             GameObject.Find("GameControllerObject").GetComponent<GameController>().NextTurn();
         }
     }

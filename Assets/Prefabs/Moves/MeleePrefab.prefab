@@ -47,7 +47,7 @@ MonoBehaviour:
   animationName: melee
   magicAttack: 0
   magicCost: 0
-  minAttackMultiplier: 0.8
-  maxAttackMultiplier: 1.5
+  minAttackMultiplier: 0.9
+  maxAttackMultiplier: 1.1
   minDefenseMultiplier: 0.5
   maxDefenseMultiplier: 1

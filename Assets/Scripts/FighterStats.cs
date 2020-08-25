@@ -103,12 +103,12 @@ public class FighterStats : MonoBehaviour, IComparable
                 healthText.text = health + " / " + startHealth + " HP";
             }
 
-            if (gameObject.tag == "Hero")
+            if (gameObject.tag.Equals("Hero"))
             {
                 gameControllerObject.GetComponent<GameController>().heroMessage.gameObject.SetActive(true);
                 gameControllerObject.GetComponent<GameController>().heroMessage.text = damage.ToString();
             }
-            else if (gameObject.tag == "Enemy")
+            else if (gameObject.tag.Equals("Enemy"))
             {
                 gameControllerObject.GetComponent<GameController>().enemyMessage.gameObject.SetActive(true);
                 gameControllerObject.GetComponent<GameController>().enemyMessage.text = damage.ToString();
@@ -142,9 +142,19 @@ public class FighterStats : MonoBehaviour, IComparable
         GameObject.Find("GameControllerObject").GetComponent<GameController>().NextTurn();
     }
 
-    public void CalculateNextTurn(int currentTurn)
+    public void CalculateNextTurn(int currentTurn, float delayValue=0)
     {
-        nextActTurn = currentTurn + Mathf.CeilToInt(100f / speed);
+        int delay = Mathf.CeilToInt(delayValue);
+        int speedFactor = Mathf.CeilToInt(100f / speed);
+        if (tag.Equals("Enemy"))
+        {
+            //randomize enemy delay based on speed stat
+            delay = UnityEngine.Random.Range(0, speedFactor);
+        }
+
+        nextActTurn = currentTurn + speedFactor + delay;
+
+        Debug.Log(tag + " Delay value: " + delay);
     }
 
     public int CompareTo(object otherStats)

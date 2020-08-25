@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
     public Text enemyMessage;
     public Text heroDelay;
 
+    public Text turnOrder;
+
     public GameObject endScreenMenu;
     public TMP_Text resultMessage;
 
@@ -77,10 +79,16 @@ public class GameController : MonoBehaviour
         if (!currentFighterStats.GetDead())
         {
             GameObject currentUnit = currentFighterStats.gameObject;
-            currentFighterStats.CalculateNextTurn(currentFighterStats.nextActTurn);
+            float delayValue = float.Parse(heroDelay.text);
+            currentFighterStats.CalculateNextTurn(currentFighterStats.nextActTurn, delayValue);
             fighterStats.Add(currentFighterStats);
             fighterStats.Sort();
-            if (currentUnit.tag == "Hero")
+            turnOrder.text = "Next Turn:\n";
+            foreach(FighterStats stat in fighterStats)
+            {
+                turnOrder.text += stat.tag + "\n";
+            }
+            if (currentUnit.tag.Equals("Hero"))
             {
                 this.battleMenu.SetActive(true);
                 heroTurn = true;
@@ -88,8 +96,8 @@ public class GameController : MonoBehaviour
             else
             {
                 this.battleMenu.SetActive(false);
-                string attackType = Random.Range(0, 2) == 1 ? "melee" : "range";
-                currentUnit.GetComponent<FighterAction>().SelectAttack(attackType);
+                string attackType = Random.Range(0, 2) == 1 ? "attack" : "skill";
+                currentUnit.GetComponent<FighterAction>().SelectAction(attackType);
             }
         }
         else
@@ -103,7 +111,7 @@ public class GameController : MonoBehaviour
         endScreenMenu.gameObject.SetActive(true);
         gameOver = true;
 
-        if (tag == "Hero")
+        if (tag.Equals("Hero"))
         {
             resultMessage.text = "YOU LOSE";
         }
