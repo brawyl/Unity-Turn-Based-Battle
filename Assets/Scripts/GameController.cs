@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     public Text enemyMessage;
     public Text heroDelay;
 
+    public Text mainMessage;
     public Text turnOrder;
 
     public GameObject endScreenMenu;
@@ -27,6 +28,8 @@ public class GameController : MonoBehaviour
 
     public GameObject elementEffect;
 
+    private string[] elements = { "wood", "fire", "earth", "metal", "water" };
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,11 @@ public class GameController : MonoBehaviour
 
         GameObject enemy = GameObject.FindGameObjectWithTag("Enemy");
         FighterStats currentEnemyStats = enemy.GetComponent<FighterStats>();
+
+        //randomize enemy element
+        int enemyElement = Random.Range(0, elements.Length);
+        currentEnemyStats.elementType = elements[enemyElement];
+
         currentEnemyStats.CalculateNextTurn(0);
         fighterStats.Add(currentEnemyStats);
 
@@ -48,6 +56,8 @@ public class GameController : MonoBehaviour
         delayCounter = 0.0f;
 
         endScreenMenu.gameObject.SetActive(false);
+
+        ShowMainMessage("FIGHT!", 1);
 
         NextTurn();
     }
@@ -66,6 +76,19 @@ public class GameController : MonoBehaviour
         {
             heroDelay.text = delayCounter.ToString("0.00");
         }
+    }
+
+    public void ShowMainMessage(string message, int timeShown)
+    {
+        mainMessage.gameObject.SetActive(false);
+        mainMessage.text = message;
+        mainMessage.gameObject.SetActive(true);
+        Invoke("HideMainMessage", timeShown);
+    }
+
+    private void HideMainMessage()
+    {
+        mainMessage.gameObject.SetActive(false);
     }
 
     public void NextTurn()
@@ -110,6 +133,7 @@ public class GameController : MonoBehaviour
 
     public void EndGame(string tag)
     {
+        HideMainMessage();
         endScreenMenu.gameObject.SetActive(true);
         gameOver = true;
 

@@ -74,16 +74,33 @@ public class FighterStats : MonoBehaviour, IComparable
         gameControllerObject.GetComponent<GameController>().heroTurn = false;
     }
 
-    public void ReceiveDamage(float damage, float length, bool selfDamage=false)
+    public void ReceiveDamage(float damage, float length, bool selfDamage=false, float elementalBonus=1.0f)
     {
-        StartCoroutine(damageUI(damage, length, selfDamage));
+        StartCoroutine(damageUI(damage, length, selfDamage, elementalBonus));
     }
 
-    IEnumerator damageUI(float damage, float length, bool selfDamage)
+    IEnumerator damageUI(float damage, float length, bool selfDamage, float elementalBonus)
     {
         yield return new WaitForSeconds(length);
 
         gameControllerObject.GetComponent<GameController>().elementEffect.SetActive(false);
+
+        if (gameObject.tag.Equals("Enemy") && elementalBonus != 1.0f)
+        {
+            string battleMessage = "";
+            if (elementalBonus < 1.0f)
+            {
+                battleMessage += "Weak Matchup!\n";
+            }
+            else
+            {
+                battleMessage += "Strong Matchup!\n";
+            }
+
+            battleMessage += elementalBonus + "x damage";
+            gameControllerObject.GetComponent<GameController>().ShowMainMessage(battleMessage, 2);
+            damage = elementalBonus * damage;
+        }
 
         health -= damage;
         animator.Play("damage");
