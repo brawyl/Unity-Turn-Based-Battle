@@ -25,6 +25,8 @@ public class GameController : MonoBehaviour
 
     private bool gameOver = false;
 
+    public GameObject elementEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,7 +99,7 @@ public class GameController : MonoBehaviour
             {
                 this.battleMenu.SetActive(false);
                 string attackType = Random.Range(0, 2) == 1 ? "attack" : "skill";
-                currentUnit.GetComponent<FighterAction>().SelectAction(attackType);
+                currentUnit.GetComponent<FighterAction>().SelectAction(attackType, "neutral");
             }
         }
         else

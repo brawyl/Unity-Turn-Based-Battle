@@ -14,22 +14,22 @@ public class CommandMenu : MonoBehaviour
 
     public void attack(string elementName)
     {
-        hero.GetComponent<FighterAction>().SelectAction("attack");
+        hero.GetComponent<FighterAction>().SelectAction("attack", elementName);
     }
 
     public void skill(string elementName)
     {
-        hero.GetComponent<FighterAction>().SelectAction("skill");
+        hero.GetComponent<FighterAction>().SelectAction("skill", elementName);
     }
 
     public void item(string itemName)
     {
-        hero.GetComponent<FighterAction>().SelectAction("item");
+        hero.GetComponent<FighterAction>().SelectAction("item", itemName);
     }
 
     public void defend(string elementName)
     {
-        hero.GetComponent<FighterAction>().SelectAction("defend");
+        hero.GetComponent<FighterAction>().SelectAction("defend", elementName);
     }
 
     public void run()

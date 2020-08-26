@@ -31,7 +31,7 @@ public class BattleAction : MonoBehaviour
     private FighterStats targetStats;
     private float damage = 0.0f;
 
-    public void Attack(GameObject victim)
+    public void Attack(GameObject victim, string element="neutral")
     {
         attackerStats = owner.GetComponent<FighterStats>();
         targetStats = victim.GetComponent<FighterStats>();
@@ -73,6 +73,37 @@ public class BattleAction : MonoBehaviour
                 animationLength = clip.length;
                 break;
             }
+        }
+
+        if (!element.Equals("neutral"))
+        {
+            GameObject elementalEffect = GameObject.Find("GameControllerObject").GetComponent<GameController>().elementEffect;
+            var main = elementalEffect.GetComponent<ParticleSystem>().main;
+            Color woodColor = new Color(76/255f, 175/255f, 80/255f, .8f);
+            Color fireColor = new Color(255/255f, 82/255f, 82/255f, .8f);
+            Color earthColor = new Color(121/255f, 85/255f, 72/255f, .8f);
+            Color metalColor = new Color(215/255f, 204/255f, 200/255f, .8f);
+            Color waterColor = new Color(33/255f, 150/255f, 243/255f, .8f);
+
+            switch (element)
+            {
+                case "wood":
+                    main.startColor = woodColor;
+                    break;
+                case "fire":
+                    main.startColor = fireColor;
+                    break;
+                case "earth":
+                    main.startColor = earthColor;
+                    break;
+                case "metal":
+                    main.startColor = metalColor;
+                    break;
+                case "water":
+                    main.startColor = waterColor;
+                    break;
+            }
+            elementalEffect.SetActive(true);
         }
 
         animator.Play(animationName);

@@ -83,6 +83,8 @@ public class FighterStats : MonoBehaviour, IComparable
     {
         yield return new WaitForSeconds(length);
 
+        gameControllerObject.GetComponent<GameController>().elementEffect.SetActive(false);
+
         health -= damage;
         animator.Play("damage");
 

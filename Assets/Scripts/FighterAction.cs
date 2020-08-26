@@ -23,17 +23,17 @@ public class FighterAction : MonoBehaviour
         enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
 
-    public void SelectAction(string action)
+    public void SelectAction(string action, string type="")
     {
         GameObject victim = tag.Equals("Hero") ? enemy : hero;
 
         if (action.Equals("attack"))
         {
-            meleePrefab.GetComponent<BattleAction>().Attack(victim);
+            meleePrefab.GetComponent<BattleAction>().Attack(victim, type);
         }
         else if (action.Equals("skill"))
         {
-            rangePrefab.GetComponent<BattleAction>().Attack(victim);
+            rangePrefab.GetComponent<BattleAction>().Attack(victim, type);
         }
         else
         {
