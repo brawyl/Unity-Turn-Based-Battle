@@ -114,27 +114,7 @@ public class BattleAction : MonoBehaviour
             attackerStats.ReceiveDamage(Mathf.CeilToInt(magicCost * 5), animationLength, true);
         }
 
-        targetStats.ReceiveDamage(Mathf.CeilToInt(damage), animationLength); 
-    }
-
-    public void Skill(GameObject victim)
-    {
-        Debug.Log("Skill");
-    }
-
-    public void Item(GameObject victim)
-    {
-        Debug.Log("Item");
-    }
-
-    public void Defend(GameObject victim)
-    {
-        Debug.Log("Defend");
-    }
-
-    public void Run(GameObject victim)
-    {
-        Debug.Log("Run");
+        targetStats.ReceiveDamage(Mathf.CeilToInt(damage), animationLength);
     }
 
     void SkipTurnContinueGame()

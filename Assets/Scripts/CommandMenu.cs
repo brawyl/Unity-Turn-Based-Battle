@@ -21,19 +21,4 @@ public class CommandMenu : MonoBehaviour
     {
         hero.GetComponent<FighterAction>().SelectAction("skill", elementName);
     }
-
-    public void item(string itemName)
-    {
-        hero.GetComponent<FighterAction>().SelectAction("item", itemName);
-    }
-
-    public void defend(string elementName)
-    {
-        hero.GetComponent<FighterAction>().SelectAction("defend", elementName);
-    }
-
-    public void run()
-    {
-        hero.GetComponent<FighterAction>().SelectAction("run");
-    }
 }
