@@ -99,7 +99,7 @@ public class FighterStats : MonoBehaviour, IComparable
 
             battleMessage += elementalBonus + "x damage";
             gameControllerObject.GetComponent<GameController>().ShowMainMessage(battleMessage, 2);
-            damage = elementalBonus * damage;
+            damage = Mathf.CeilToInt(elementalBonus * damage);
         }
 
         health -= damage;
