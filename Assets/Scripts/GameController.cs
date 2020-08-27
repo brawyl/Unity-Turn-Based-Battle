@@ -46,6 +46,18 @@ public class GameController : MonoBehaviour
         int enemyElement = Random.Range(0, elements.Length);
         currentEnemyStats.elementType = elements[enemyElement];
 
+        float hdr = Mathf.Pow(2, 1.5f);
+
+        Color woodColor = new Color((76 / 255f)*hdr, (175 / 255f) * hdr, (80 / 255f)*hdr, 1f);
+        Color fireColor = new Color((255 / 255f) * hdr, (82 / 255f)*hdr, (82 / 255f)*hdr, 1f);
+        Color earthColor = new Color((121 / 255f) * hdr, (85 / 255f) * hdr, (72 / 255f) * hdr, 1f);
+        Color metalColor = new Color((215 / 255f) * hdr, (204 / 255f) * hdr, (200 / 255f) * hdr, 1f);
+        Color waterColor = new Color((33 / 255f) * hdr, (150 / 255f) * hdr, (243 / 255f) * hdr, 1f);
+        Color[] colors = { woodColor, fireColor, earthColor, metalColor, waterColor };
+
+        Material material = currentEnemyStats.GetComponent<SpriteRenderer>().material;
+        material.SetColor("_Color", colors[enemyElement]);
+
         currentEnemyStats.CalculateNextTurn(0);
         fighterStats.Add(currentEnemyStats);
 
