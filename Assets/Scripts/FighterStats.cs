@@ -185,4 +185,28 @@ public class FighterStats : MonoBehaviour, IComparable
         int nex = nextActTurn.CompareTo(((FighterStats)otherStats).nextActTurn);
         return nex;
     }
+
+    public void playMeleeSound()
+    {
+        if (gameObject.tag.Equals("Hero"))
+        {
+            GameObject.Find("MeleeSound1").GetComponent<AudioSource>().Play();
+        }
+        else
+        {
+            GameObject.Find("MeleeSound2").GetComponent<AudioSource>().Play();
+        }
+    }
+
+    public void playSkillSound()
+    {
+        if (gameObject.tag.Equals("Hero"))
+        {
+            GameObject.Find("SkillSound1").GetComponent<AudioSource>().Play();
+        }
+        else
+        {
+            GameObject.Find("SkillSound2").GetComponent<AudioSource>().Play();
+        }
+    }
 }
