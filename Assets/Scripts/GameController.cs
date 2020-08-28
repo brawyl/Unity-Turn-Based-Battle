@@ -125,6 +125,11 @@ public class GameController : MonoBehaviour
             {
                 turnOrder.text += stat.tag + "\n";
             }
+
+            //regen magic at the start of each turn accorsing to unit's regen rate
+            float regen = currentUnit.GetComponent<FighterStats>().regenRate;
+            currentUnit.GetComponent<FighterStats>().regenMagic(regen);
+
             if (currentUnit.tag.Equals("Hero"))
             {
                 this.battleMenu.SetActive(true);

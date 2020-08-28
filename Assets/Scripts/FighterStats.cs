@@ -30,6 +30,7 @@ public class FighterStats : MonoBehaviour, IComparable
     public float speed;
     public float experience;
     public string elementType;
+    public float regenRate;
 
     private float startHealth;
     private float startMagic;
@@ -142,16 +143,30 @@ public class FighterStats : MonoBehaviour, IComparable
 
     public void updateMagicFill(float cost)
     {
-        if (cost > 0)
-        {
-            magic -= cost;
-            xNewMagicScale = magicScale.x * (magic / startMagic);
-            magicFill.transform.localScale = new Vector2(xNewMagicScale, magicScale.y);
+        magic -= cost;
+        xNewMagicScale = magicScale.x * (magic / startMagic);
+        magicFill.transform.localScale = new Vector2(xNewMagicScale, magicScale.y);
 
-            if (magicText != null)
-            {
-                magicText.text = magic + " / " + startMagic + " MP";
-            }
+        if (magicText != null)
+        {
+            magicText.text = magic + " / " + startMagic + " SP";
+        }
+    }
+
+    public void regenMagic(float regen)
+    {
+        magic += regen;
+        if (magic >= startMagic)
+        {
+            magic = startMagic;
+        }
+
+        xNewMagicScale = magicScale.x * (magic / startMagic);
+        magicFill.transform.localScale = new Vector2(xNewMagicScale, magicScale.y);
+
+        if (magicText != null)
+        {
+            magicText.text = magic + " / " + startMagic + " SP";
         }
     }
 

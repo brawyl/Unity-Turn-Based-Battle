@@ -194,7 +194,7 @@ public class BattleAction : MonoBehaviour
         if (selfDamage)
         {
             //take damage when using a magic skill with no MP left
-            attackerStats.ReceiveDamage(Mathf.CeilToInt(magicCost * 5), animationLength, true, 1.0f);
+            attackerStats.ReceiveDamage(Mathf.CeilToInt(magicCost * 10), animationLength, true, 1.0f);
         }
 
         targetStats.ReceiveDamage(Mathf.CeilToInt(damage), animationLength, false, elementalBonus);
